@@ -44,7 +44,7 @@ def main():
                         pokemon_hint += (' ' + msg_piece)
                         pokemon_hint = pokemon_hint.strip()
                 final_mons = search_mons(pokemon_hint)
-                await msg.channel.send(str(final_mons).strip('[').strip(']').strip("'"))
+                await msg.channel.send(str(final_mons))
 
     def search_mons(hint) -> [str]:
         possible_mons = pokemon

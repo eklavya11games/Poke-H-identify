@@ -6,9 +6,7 @@ from discord import Client
 
 import pokeformat
 
-__version__ = "v1.0.1a1"
-
-default_poke_list = []
+__version__ = "v1.0.2rc1"
 
 
 def main():

@@ -101,7 +101,7 @@ def format_poke():
     for pokemon in final_list:
         final_list[final_list.index(pokemon)] = pokemon.strip(' ')
 
-    if not os.path.exists("lts/"):
+    if not os.path.exists('lts/'):
         os.mkdir('lts/')
 
     with open('lts/pokemon.json', 'w') as f:

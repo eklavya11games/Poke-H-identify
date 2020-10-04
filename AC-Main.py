@@ -6,7 +6,7 @@ from discord import Client
 
 import pokeformat
 
-__version__ = "v1.0.3-final"
+__version__ = "v1.0.4-final"
 
 
 def main():
@@ -24,6 +24,20 @@ def main():
     client: Client = Client()
     pokemon: [str] = read_pokemon()
 
+    def special_pokemon() -> {str}:
+        special_forms = [
+            'Alolan',
+            'Galarian'
+        ]
+        temp_dict: {str} = {}
+        for mon in pokemon:
+            processed_msg = str(mon).split(' ')
+            if processed_msg[0] in special_forms:
+                temp_dict[processed_msg[1]] = mon
+        return temp_dict
+
+    special_mons = special_pokemon()
+
     @client.event
     async def on_ready():
         print(f'Initialized PokeHelper {__version__}')
@@ -31,24 +45,26 @@ def main():
     @client.event
     async def on_message(msg):
         if msg.author.id in bots:
-            print("heard bot message")
             if 'The pokémon is' in msg.content:
                 content = str(msg.content).strip().strip('.').split(' ')
                 pokemon_hint = ''
                 for msg_piece in content:
                     if '_' in msg_piece:
                         if 'é' in msg_piece:
-                            await msg.channel.send('Flabébé')
+                            await msg.channel.send('[\'Flabébé\']')
                             return
                         msg_piece = msg_piece.replace('\\', '')
                         pokemon_hint += (' ' + msg_piece)
                         pokemon_hint = pokemon_hint.strip()
                 final_mons = search_mons(pokemon_hint)
+                for mon in final_mons:
+                    if mon in special_mons:
+                        final_mons.append(special_mons[mon])
+                print(str(final_mons).replace('_', ''))
                 await msg.channel.send(str(final_mons).replace('_', ''))
 
     def search_mons(hint) -> [str]:
         possible_mons = pokemon
-        print(hint)
         for i in range(len(hint)):
             if not (hint[i] == '_'):
                 new_possible_mons = []

@@ -107,5 +107,3 @@ def format_poke():
     with open('lts/pokemon.json', 'w') as f:
         f.truncate(0)
         json.dump(final_list, f, indent=4)
-
-    del poke_string

@@ -6,7 +6,7 @@ from discord import Client
 
 import pokeformat
 
-__version__ = "v1.0.4-final"
+__version__ = "v1.0.5-final"
 
 
 def main():

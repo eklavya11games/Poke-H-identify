@@ -6,7 +6,7 @@ from discord import Client
 
 import pokeformat
 
-__version__ = "v1.0.5-final"
+__version__ = "v1.0.6-final"
 
 
 def main():
@@ -27,7 +27,8 @@ def main():
     def special_pokemon() -> {str}:
         special_forms = [
             'Alolan',
-            'Galarian'
+            'Galarian',
+            'Shadow'
         ]
         temp_dict: {str} = {}
         for mon in pokemon:
@@ -51,7 +52,7 @@ def main():
                 for msg_piece in content:
                     if '_' in msg_piece:
                         if 'é' in msg_piece:
-                            await msg.channel.send('[\'Flabébé\']')
+                            await msg.channel.send('[\'Flabebe\']')
                             return
                         msg_piece = msg_piece.replace('\\', '')
                         pokemon_hint += (' ' + msg_piece)
